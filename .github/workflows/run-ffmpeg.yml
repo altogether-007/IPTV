@@ -1,0 +1,22 @@
+name: Run FFmpeg Script
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ffmpeg-job:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    
+    - name: Install FFmpeg
+      run: sudo apt-get install -y ffmpeg
+    
+    - name: Run FFmpeg conversion
+      run: |
+        chmod +x convert-ts-to-m3u8.sh
+        ./convert-ts-to-m3u8.sh
